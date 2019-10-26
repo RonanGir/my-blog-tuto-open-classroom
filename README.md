@@ -13,6 +13,7 @@ this project use the bootstrap 4.3.1 version
 To clone the project make sure that you've installed :
 - git & nodeJS (on you computer)
 - angular/cli (`npm install -g @angular/cli`)
+- launch `git clone https://github.com/RonanGir/my-blog-tuto-open-classroom.git` in your terminal
 
 
 ## To launch this project locally :
