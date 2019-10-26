@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.0.
 
+![alt text](screenshot-of-the-blog.png)
+
 ## Dependencies infos :
 
 this project use the bootstrap 4.3.1 version
