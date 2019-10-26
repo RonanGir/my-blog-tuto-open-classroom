@@ -1,1 +1,11 @@
-<p>post-list-item-component works!</p>
+<li  class=" displayFlex list-group-item" [ngClass]="{'list-group-item-danger': loveIts < dontLoveIts , 'list-group-item-success': loveIts >= dontLoveIts}">
+  <div>
+      <div class="post_header">
+        <h3 class="publication_title">{{ getTitle() }}</h3>
+        <span class="publication_dates">{{ created_at |date: "short" }}</span>
+      </div>
+        <p class="publication_content">{{ getContent() }}</p>
+      <button class="btn btn-primary btn-sm" (click)="onAddLoveIt(getId())"><span class="badge badge-pill badge-light">{{ loveIts }}</span>{{ getLike(loveIts) }}</button>
+      <button class="btn btn-light btn-sm" (click)="onAddDontLoveIt(getId())"><span class="badge badge-pill badge-light">{{ dontLoveIts }}</span>{{ getDislike(loveIts) }}</button>
+  </div>
+</li>

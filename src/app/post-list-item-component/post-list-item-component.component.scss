@@ -1,0 +1,23 @@
+.post_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.publication_dates {
+  font-size: 13px;
+  font-style: italic;
+  color: rgb(150,150,150);
+}
+
+.publication_title {
+  font-size: 18px;
+}
+
+button {
+  margin-right: 10px;
+}
+
+.badge {
+  margin-right: 5px;
+}
