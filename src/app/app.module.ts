@@ -3,17 +3,19 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PostListComponentComponent } from './post-list-component/post-list-component.component';
-import { PostListItemComponentComponent } from './post-list-item-component/post-list-item-component.component';
+import { PostListComponent } from './post-list/post-list.component';
+import { PostListItemComponent } from './post-list-item/post-list-item.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NewPostComponent } from './new-post/new-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostListComponentComponent,
-    PostListItemComponentComponent,
-    NavbarComponent
+    PostListComponent,
+    PostListItemComponent,
+    NavbarComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,
