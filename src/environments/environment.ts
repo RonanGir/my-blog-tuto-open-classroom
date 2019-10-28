@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiKey: "AIzaSyCA7HCU5TCh9foqWyoEVS4ouyuOCMOOIfw",
+  authDomain: "my-blog-tuto-openclassroom.firebaseapp.com",
+  databaseURL: "https://my-blog-tuto-openclassroom.firebaseio.com",
+  projectId: "my-blog-tuto-openclassroom",
+  storageBucket: "my-blog-tuto-openclassroom.appspot.com",
+  messagingSenderId: "320719896969",
+  appId: "1:320719896969:web:778127c0860ddd104da158"
 };
 
 /*

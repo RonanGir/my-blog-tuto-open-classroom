@@ -1,35 +1,84 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Post } from '../models/post';
+import { Subject } from 'rxjs/Subject';
+import * as firebase from 'firebase';
+import DataSnapshot = firebase.database.DataSnapshot;
 
 @Injectable({
   providedIn: 'root'
 })
-export class PostService implements OnInit {
-  p1: any = new Post(1, "3 Mistakes In BLOG That Make You Look Dumb", "Iis igitur est difficilius satis facere, qui se Latina scripta dicunt contemnere. in quibus hoc primum est in quo admirer", 0, 0);
-  p2: any = new Post(2, "3 BLOG Secrets You Never Knew", "Iis igitur est difficilius satis facere, qui se Latina scripta dicunt contemnere. in quibus hoc primum est in quo admirer, cur in gravissimis rebus non delectet eos sermo patrius, cum idem fabellas Latinas ad verbum e Graecis expressas non inviti legant. quis enim tam inimicus paene nomini Romano est, qui Ennii Medeam aut Antiopam Pacuvii spernat aut reiciat, quod se isdem Euripidis fabulis delectari dicat, Latinas litteras oderit?", 3, 2);
-  p3: any = new Post(3, "Open The Gates For BLOG By Using These Simple Tips", "Iis igitur est difficilius satis facere, qui se Latina scripta dicunt contemnere. in quibus hoc primum est in quo admirer,  quis enim tam inimicus paene nomini Romano est, qui Ennii Medeam aut Antiopam Pacuvii spernat aut reiciat, quod se isdem Euripidis fabulis delectari dicat, Latinas litteras oderit?", 0, 3);
-  p4: any = new Post(4, "5 Best Ways To Sell BLOG", "Iis igitur est difficilius satis facere, qui se Latina scripta dicunt contemnere. in quibus hoc primum est in quo admirer, cur in gravissimis rebus non delectet eos sermo patrius, cum idem fabellas Latinas ad verbum e Graecis expressas non inviti legant. quis enim tam inimicus paene nomini Romano est, qui Ennii Medeam aut Antiopam Pacuvii spernat aut reiciat, quod se isdem Euripidis fabulis delectari dicat, Latinas litteras oderit?", 9, 2);
-  p5: any = new Post(5, "15 Lessons About BLOG You Need To Learn To Succeed", "In quibus hoc primum est in quo admirer, cur in gravissimis rebus non delectet eos sermo patrius, reiciat, quod se isdem Euripidis fabulis delectari dicat, Latinas litteras oderit?", 2, 0);
-  posts: any[] = [this.p1, this.p2, this.p3, this.p4, this.p5];
+export class PostService {
+
+  posts: any[];
+  postsSubject = new Subject<Post[]>();
 
 
-  constructor() { }
+  constructor() {
+    this.getPosts();
+  }
 
-  ngOnInit() {
+  emitPosts() {
+    this.postsSubject.next(this.posts);
   }
 
   addLoveIt(id: number): void {
-    console.log(id);
     for (let post of this.posts) {
       if (post.id == id) post.loveIts = post.loveIts + 1;
     }
+    this.savePosts();
+    this.emitPosts();
   }
 
   addDontLoveIt(id: number): void {
     for (let post of this.posts) {
       if (post.id == id) post.dontLoveIts = post.dontLoveIts + 1;
     }
+    this.savePosts();
+    this.emitPosts();
   }
+
+  getPosts() {
+    firebase.database().ref('/posts')
+      .on('value', (data: DataSnapshot) => {
+          this.posts = data.val() ? data.val() : [];
+          this.emitPosts();
+        }
+      );
+  }
+
+
+  createPost(post: Post): void {
+    this.posts.push(post);
+    this.savePosts();
+    this.emitPosts();
+  }
+
+   savePosts(): void {
+    firebase.database().ref('/posts').set(this.posts);
+  }
+
+
+  updatePost(id: number) {
+
+  }
+
+
+  deletePost(post: Post): void {
+
+    const postIndex = this.posts.findIndex(
+      (postEl) => {
+        if(postEl === post) {
+          return true;
+        }
+      }
+    );
+
+    this.posts.splice(postIndex, 1);
+    this.savePosts();
+    this.emitPosts();
+
+  }
+
 
 
 }

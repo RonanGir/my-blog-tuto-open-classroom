@@ -1,1 +1,19 @@
-<p>new-post works!</p>
+<div class="row">
+  <div class="col-xs-12 col-md-6 offset-md-3">
+    <h1 class="text-center">Add a new post</h1>
+    <form [formGroup]="addPostForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="titlee">Title</label>
+        <input type="text" class="form-control" id="titlee" formControlName="title">
+      </div>
+
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea class="form-control" id="content" formControlName="content" rows="3"></textarea>
+      </div>
+       <button type="submit" [disabled]="addPostForm.invalid" class="btn btn-primary">Submit your post</button>
+    </form>
+    <p class="text-danger">{{ errorMessage }}</p>
+  </div>
+</div>
+

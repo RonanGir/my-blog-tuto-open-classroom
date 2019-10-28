@@ -15,6 +15,7 @@ export class PostListItemComponent implements OnInit {
   @Input() loveIts: number;
   @Input() dontLoveIts: number;
   @Input() created_at: Date;
+  @Input() index: number;
 
   maxLength: number       = 200;
   truncate_suffix: string = "...";
@@ -30,13 +31,16 @@ export class PostListItemComponent implements OnInit {
     return this.id;
   }
 
+  getIndex(): number {
+    return this.index;
+  }
+
   getTitle(): string {
     return this.title;
   }
 
   getContent(): string {
     this.article_content = this.content;
-    console.log(this.content.length);
 
     if (this.content.length > this.maxLength) {
       this.article_content = this.article_content.substring(0,this.maxLength);
@@ -61,6 +65,11 @@ export class PostListItemComponent implements OnInit {
   onAddDontLoveIt(id: number): void {
     this.postService.addDontLoveIt(+id);
   }
+
+  onDeletePost(post: Post): void {
+    this.postService.deletePost(post);
+  }
+
 
 
 

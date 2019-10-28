@@ -14,10 +14,23 @@
   font-size: 18px;
 }
 
+.publication_title_content {
+  line-height: 10px;
+}
+
+.publication_content {
+  margin-top: 15px;
+}
+
 button {
   margin-right: 10px;
 }
 
 .badge {
   margin-right: 5px;
+}
+
+.post_infos {
+  display: flex;
+  flex-direction: column;
 }
