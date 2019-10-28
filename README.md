@@ -14,6 +14,7 @@ To clone the project make sure that you've installed :
 - git & nodeJS (on you computer)
 - angular/cli (`npm install -g @angular/cli`)
 - launch `git clone https://github.com/RonanGir/my-blog-tuto-open-classroom.git` in your terminal
+- run `npm install` to install all project dependencies locally
 
 
 ## To launch this project locally :
